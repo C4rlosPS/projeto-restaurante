@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pedidos do Restaurante</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.5.0/css/bootstrap.min.css" integrity="sha512-yJUbC7Sp5aD4bYU2b1LaKxMggjUsWXdXSNRIZrE0xklFTvpQarDz94dInpWYKYRgBB7w3MNj2gmk//8It8mMfA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-h3qaGOWqvegEgIVJZ/SeWUbNPlVCLbQwPOSDuzKpqMaF2W8UttX07b60V6wOYz4DKzW7pVzDfJqUM3z59t9HDg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.5.0/js/bootstrap.min.js" integrity="sha512-B9NRAv1EjUIfC0hvnfq7QnQ1oq2c8KUMwUfuf3QaWgrw+hSyZYHVl93xdGZvtLKYmhnzEEVQ0fwSx2aGwleCqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+<body>
+  <div class="container">
+    <h2>Pedidos do Restaurante</h2>
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" placeholder="Digite seu nome">
+
+    <label for="telefone">Telefone (com DDD):</label>
+    <input type="text" id="telefone" placeholder="Digite seu telefone">
+
+    <label for="endereco">Endereço:</label>
+    <input type="text" id="endereco" placeholder="Digite seu endereço de entrega">
+
+    <label for="pedido">Observações:</label>
+    <textarea id="pedido" placeholder="Digite seu pedido"></textarea>
+
+    <div class="row">
+      <div class="column">
+        <h3>Marmitex:</h3>
+        <div>
+          <button onclick="adicionarAoCarrinho('Marmitex P', event)">Adicionar Marmitex P ao Carrinho</button>
+        </div>
+        <div>
+          <button onclick="adicionarAoCarrinho('Marmitex M', event)">Adicionar Marmitex M ao Carrinho</button>
+        </div>
+        <div>
+          <button onclick="adicionarAoCarrinho('Marmitex G', event)">Adicionar Marmitex G ao Carrinho</button>
+        </div>
+      </div>
+      <div class="column">
+        <h3>Refrigerantes:</h3>
+        <div>
+          <button onclick="adicionarAoCarrinho('Sprite lata', event)">Adicionar Sprite lata ao Carrinho</button>
+        </div>
+        <div>
+          <button onclick="adicionarAoCarrinho('Fanta Uva lata', event)">Adicionar Fanta Uva lata ao Carrinho</button>
+        </div>
+        <div>
+          <button onclick="adicionarAoCarrinho('Coca-Cola Zero lata', event)">Adicionar Coca-Cola Zero lata ao Carrinho</button>
+        </div>
+        <div>
+          <button onclick="adicionarAoCarrinho('Água tônica Schweppes', event)">Adicionar Água tônica Schweppes ao Carrinho</button>
+        </div>
+        <div>
+          <button onclick="adicionarAoCarrinho('Água sem gás', event)">Adicionar Água sem gás ao Carrinho</button>
+        </div>
+        <div>
+          <button onclick="adicionarAoCarrinho('Água com gás', event)">Adicionar Água com gás ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+
+    <h3>Carrinho de Compras:</h3>
+    <div id="carrinho"></div>
+
+    <h3>Opções de entrega ou retirada:</h3>
+    <div>
+      <input type="checkbox" id="entrega" value="entrega">
+      <label for="entrega">Entrega</label>
+    </div>
+    <div>
+      <input type="checkbox" id="retirada" value="retirada">
+      <label for="retirada">Retirada</label>
+    </div>
+
+    <h3>Formas de Pagamento:</h3>
+    <div>
+      <input type="checkbox" id="dinheiro" value="dinheiro">
+      <label for="dinheiro">Dinheiro</label>
+    </div>
+    <div>
+      <input type="checkbox" id="cartao" value="cartao">
+      <label for="cartao">Cartão</label>
+    </div>
+    <div>
+      <input type="checkbox" id="pix" value="pix">
+      <label for="pix">PIX</label>
+    </div>
+
+    <button onclick="confirmarPedido()">Confirmar Pedido e Gerar Documento</button>
+
+    <script src="script.js"></script>
+  </div>
+</body>
+</html>
