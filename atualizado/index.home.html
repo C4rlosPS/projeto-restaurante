@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Homepage</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .logo {
+      max-width: 400px;
+      margin-bottom: 5px;
+    }
+
+    .menu {
+      width: 300px;
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .button {
+      padding: 10px 20px;
+      background-color: #19191a;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+
+    button:hover{
+      background-color: #424246;
+    }
+
+    
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 300px;
+      background-color: black;
+      z-index: 1;
+    }
+
+    .sidebar-left {
+      left: 0;
+    }
+
+    .sidebar-right {
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar sidebar-left"></div>
+  <div class="sidebar sidebar-right"></div>
+
+  <img class="logo" src="img/logo.png" alt="Logo do Restaurante">
+  <div class="menu">
+    <h3>Cardápio do Dia</h3>
+    <p> - Arroz e Feijão;<br><br>
+        - Filé de Frango á Milanesa;<br><br>
+        - Linguicinha de Frango;<br><br>
+        - Salada de alface;
+    </p>
+  </div>
+  <a href="index.html">
+    <button class="button">Fazer Pedido</button>
+  </a>
+</body>
+</html>
