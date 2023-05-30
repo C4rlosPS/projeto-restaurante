@@ -1,6 +1,8 @@
-este projeto de link de pedidos para o restaurante
-
-pagina home ok.
-pagina pedido ok.
-pagina admin --
-hospedar -- RAILWAY ou NETFLY
+## Projeto de Link de Pedidos para Restaurante
+ ***
+ ### Etapas:
+ ***
+1. pagina home ok.
+1. pagina pedido ok.
+1. pagina admin --
+1. hospedar -- RAILWAY ou NETFLY
