@@ -1,4 +1,8 @@
 var total = 0;
+var quantidadeItens = 0;
+var totalVendasCartao = 0;
+var totalVendasDinheiro = 0;
+var totalVendasPix = 0;
 
 function adicionarAoCarrinho(produto, event) {
   event.preventDefault();
@@ -45,11 +49,21 @@ function adicionarAoCarrinho(produto, event) {
   // Adiciona o item ao carrinho
   carrinho.appendChild(paragrafo);
 
-  // Atualiza o total
+  // Atualiza a quantidade de itens vendidos
+  quantidadeItens++;
+
+  // Atualiza o total de vendas
   total += preco;
+
+  // Atualiza o total de vendas por forma de pagamento
+  if (produto === "Marmitex P" || produto === "Marmitex M" || produto === "Marmitex G") {
+    totalVendasDinheiro += preco;
+  } else {
+    totalVendasCartao += preco;
+  }
+
   mostrarTotal();
 }
-
 
 // Função para exibir o total no carrinho
 function mostrarTotal() {
@@ -63,76 +77,81 @@ function mostrarTotal() {
   totalElement.innerText = "Total: R$" + total.toFixed(2);
 }
 
+// Função para exibir os dados no relatório de vendas
+function exibirRelatorioVendas() {
+  document.getElementById("quantidadeItens").textContent = quantidadeItens.toString();
+  document.getElementById("totalVendas").textContent = "R$" + total.toFixed(2);
+  document.getElementById("totalVendasCartao").textContent = "R$" + totalVendasCartao.toFixed(2);
+  document.getElementById("totalVendasDinheiro").textContent = "R$" + totalVendasDinheiro.toFixed(2);
+  document.getElementById("totalVendasPix").textContent = "R$" + totalVendasPix.toFixed(2);
+}
 
+// Verifica a forma de pagamento selecionada
+function confirmarPedido() {
+  var nomeCliente = document.getElementById("nome").value;
+  var telefoneCliente = document.getElementById("telefone").value;
+  var observacoes = document.getElementById("pedido").value;
+  var endereco = document.getElementById("endereco").value;
+  var carrinho = document.getElementById("carrinho");
+  var formaPagamento = "";
+  var opcaoEntregaRetirada = "";
 
   // Verifica a forma de pagamento selecionada
-  function confirmarPedido() {
-    var nomeCliente = document.getElementById("nome").value;
-    var telefoneCliente = document.getElementById("telefone").value;
-    var observacoes = document.getElementById("pedido").value;
-    var endereco = document.getElementById("endereco").value;
-    var carrinho = document.getElementById("carrinho");
-    var formaPagamento = "";
-    var opcaoEntregaRetirada = "";
-  
-    // Verifica a forma de pagamento selecionada
-    var dinheiro = document.getElementById("dinheiro").checked;
-    var cartao = document.getElementById("cartao").checked;
-    var pix = document.getElementById("pix").checked;
-  
-    if (dinheiro) {
-      formaPagamento = "Dinheiro";
+  var dinheiro = document.getElementById("dinheiro").checked;
+  var cartao = document.getElementById("cartao").checked;
+  var pix = document.getElementById("pix").checked;
+
+  if (dinheiro) {
+    formaPagamento = "Dinheiro";
+  }
+  if (cartao) {
+    if (formaPagamento !== "") {
+      formaPagamento += ", ";
     }
-    if (cartao) {
-      if (formaPagamento !== "") {
-        formaPagamento += ", ";
-      }
-      formaPagamento += "Cartão";
+    formaPagamento += "Cartão";
+  }
+  if (pix) {
+    if (formaPagamento !== "") {
+      formaPagamento += ", ";
     }
-    if (pix) {
-      if (formaPagamento !== "") {
-        formaPagamento += ", ";
-      }
-      formaPagamento += "PIX";
+    formaPagamento += "PIX";
+  }
+
+  // Verifica a opção de entrega ou retirada selecionada
+  var entrega = document.getElementById("entrega").checked;
+  var retirada = document.getElementById("retirada").checked;
+
+  if (entrega) {
+    opcaoEntregaRetirada = "Entrega";
+  }
+  if (retirada) {
+    if (opcaoEntregaRetirada !== "") {
+      opcaoEntregaRetirada += ", ";
     }
-  
-    // Verifica a opção de entrega ou retirada selecionada
-    var entrega = document.getElementById("entrega").checked;
-    var retirada = document.getElementById("retirada").checked;
-  
-    if (entrega) {
-      opcaoEntregaRetirada = "Entrega";
-    }
-    if (retirada) {
-      if (opcaoEntregaRetirada !== "") {
-        opcaoEntregaRetirada += ", ";
-      }
-      opcaoEntregaRetirada += "Retirada";
-    }
-  
-    // Verifica se algum campo está vazio
-    if (nomeCliente === "" || telefoneCliente === "" || observacoes === "" || endereco === "") {
-      alert("Por favor, preencha todos os campos obrigatórios.");
-      return;
-    }
-  
-    // Remove os botões "Remover" do carrinho antes de exibir o documento
-    var botoesRemover = carrinho.getElementsByClassName("remover");
-    for (var i = 0; i < botoesRemover.length; i++) {
-      botoesRemover[i].remove();
-    }
-  
-    // Obtém o texto dos elementos de parágrafo no carrinho
-    var produtos = [];
-    var itensCarrinho = carrinho.getElementsByTagName("li");
-    for (var j = 0; j < itensCarrinho.length; j++) {
-      produtos.push(itensCarrinho[j].textContent);
-    }
-  
-    
-  
-    // Exibe o documento gerado em um elemento <textarea> na página
-    var documentoPedido = "Nome: " + nomeCliente + "\n" +
+    opcaoEntregaRetirada += "Retirada";
+  }
+
+  // Verifica se algum campo está vazio
+  if (nomeCliente === "" || telefoneCliente === "" || observacoes === "" || endereco === "") {
+    alert("Por favor, preencha todos os campos obrigatórios.");
+    return;
+  }
+
+  // Remove os botões "Remover" do carrinho antes de exibir o documento
+  var botoesRemover = carrinho.getElementsByClassName("remover");
+  for (var i = 0; i < botoesRemover.length; i++) {
+    botoesRemover[i].remove();
+  }
+
+  // Obtém o texto dos elementos de parágrafo no carrinho
+  var produtos = [];
+  var itensCarrinho = carrinho.getElementsByTagName("li");
+  for (var j = 0; j < itensCarrinho.length; j++) {
+    produtos.push(itensCarrinho[j].textContent);
+  }
+
+  // Exibe o documento gerado em um elemento <textarea> na página
+  var documentoPedido = "Nome: " + nomeCliente + "\n" +
     "Telefone: " + telefoneCliente + "\n" +
     "Endereço: " + endereco + "\n" +
     "Observações: " + observacoes + "\n" +
@@ -143,8 +162,9 @@ function mostrarTotal() {
 
   // Exibe os dados do pedido em um alerta para o cliente revisar
   alert(documentoPedido);
-  }
+  // Define a função para exibir o relatório de vendas quando a página for carregada
+  window.onload = exibirRelatorioVendas;
+  // Redireciona para a página de administração
+  window.location.href = "telaAdmin.html";
   
-  
-  
-
+}
