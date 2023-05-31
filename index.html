@@ -13,18 +13,26 @@
       font-family: Arial, sans-serif;
     }
 
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
     .logo {
-      max-width: 400px;
+      max-width: 100%;
       margin-bottom: 5px;
     }
 
     .menu {
-      width: 300px;
+      width: 100%;
+      max-width: 300px;
       padding: 10px;
       text-align: center;
       border: 1px solid #ccc;
       border-radius: 5px;
       font-family: Arial, Helvetica, sans-serif;
+      margin-top: 20px;
     }
 
     .button {
@@ -36,18 +44,19 @@
       cursor: pointer;
       font-size: 16px;
       margin-top: 20px;
+      width: 100%;
     }
 
-    button:hover{
+    button:hover {
       background-color: #424246;
     }
 
-    
     .sidebar {
       position: fixed;
       top: 0;
       bottom: 0;
-      width: 300px;
+      width: 100%;
+      max-width: 300px;
       background-color: black;
       z-index: 1;
     }
@@ -59,24 +68,42 @@
     .sidebar-right {
       right: 0;
     }
+
+    @media only screen and (min-width: 768px) {
+      body {
+        align-items: flex-start;
+        padding-left: 320px;
+      }
+
+      .container {
+        padding: 40px;
+      }
+
+      .logo {
+        max-width: 400px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <div class="sidebar sidebar-left"></div>
-  <div class="sidebar sidebar-right"></div>
+<div class="sidebar sidebar-left"></div>
+<div class="sidebar sidebar-right"></div>
 
+<div class="container">
   <img class="logo" src="img/logo.png" alt="Logo do Restaurante">
   <div class="menu">
     <h3>Cardápio do Dia</h3>
     <p> - Arroz e Feijão;<br><br>
-        - Filé de Frango á Milanesa;<br><br>
-        - Linguicinha de Frango;<br><br>
-        - Salada de alface;
+      - Filé de Frango á Milanesa;<br><br>
+      - Linguicinha de Frango;<br><br>
+      - Salada de alface;
     </p>
   </div>
-  <a href="index.html">
+  <a href="Pedidos.html">
     <button class="button">Fazer Pedido</button>
   </a>
+</div>
+
 </body>
 </html>
