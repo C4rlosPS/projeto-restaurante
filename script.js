@@ -77,15 +77,18 @@ function mostrarTotal() {
   totalElement.innerText = "Total: R$" + total.toFixed(2);
 }
 
+
 // Função para exibir os dados no relatório de vendas
 function exibirRelatorioVendas() {
-  document.getElementById("quantidadeItens").textContent = quantidadeItens.toString();
-  document.getElementById("totalVendas").textContent = "R$" + total.toFixed(2);
-  document.getElementById("totalVendasCartao").textContent = "R$" + totalVendasCartao.toFixed(2);
-  document.getElementById("totalVendasDinheiro").textContent = "R$" + totalVendasDinheiro.toFixed(2);
-  document.getElementById("totalVendasPix").textContent = "R$" + totalVendasPix.toFixed(2);
+  document.getElementById("quantidadeItens").innerText = quantidadeItens;
+  document.getElementById("totalVendas").innerText = total.toFixed(2);
+  document.getElementById("totalVendasCartao").innerText = totalVendasCartao.toFixed(2);
+  document.getElementById("totalVendasDinheiro").innerText = totalVendasDinheiro.toFixed(2);
+  document.getElementById("totalVendasPix").innerText = totalVendasPix.toFixed(2);
 }
 
+
+// Verifica a forma de pagamento selecionada
 // Verifica a forma de pagamento selecionada
 function confirmarPedido() {
   var nomeCliente = document.getElementById("nome").value;
@@ -162,9 +165,6 @@ function confirmarPedido() {
 
   // Exibe os dados do pedido em um alerta para o cliente revisar
   alert(documentoPedido);
-  // Define a função para exibir o relatório de vendas quando a página for carregada
-  window.onload = exibirRelatorioVendas;
   // Redireciona para a página de administração
   window.location.href = "telaAdmin.html";
-  
 }
