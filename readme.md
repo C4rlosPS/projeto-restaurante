@@ -6,3 +6,5 @@
 1. pagina pedido ok.
 1. pagina admin --
 1. hospedar -- RAILWAY ou NETFLY
+
+See the page at projeto-restaurante-lake.vercel.app.
